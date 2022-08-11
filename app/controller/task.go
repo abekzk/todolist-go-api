@@ -26,16 +26,16 @@ func NewTaskController(useCase TaskUseCaseInterface) *TaskController {
 }
 
 // Get godoc
-// @Summary      タスク取得
-// @Description  ユーザのタスクを複数件取得する
-// @Tags         task
-// @Produce      json
-// @Param        status  query     int  false  "タスクステータス 0: 未着手 1: 完了"  Enums(0, 1)
-// @Success      200     {object}  []model.Task
-// @Failure      401     "Unauthorized"
-// @Failure      500     {object}  model.Error
-// @Security     TokenAuth
-// @Router       /v1/tasks [get]
+// @Summary     タスク取得
+// @Description ユーザのタスクを複数件取得する
+// @Tags        task
+// @Produce     json
+// @Param       status query    int false "タスクステータス 0: 未着手 1: 完了" Enums(0, 1)
+// @Success     200    {object} []model.Task
+// @Failure     401    "Unauthorized"
+// @Failure     500    {object} model.Error
+// @Security    TokenAuth
+// @Router      /v1/tasks [get]
 func (controller *TaskController) Get(c *gin.Context) {
 	token := c.MustGet(ginauth.FirebaseAuthTokenKey).(*auth.Token)
 
@@ -56,18 +56,18 @@ func (controller *TaskController) Get(c *gin.Context) {
 }
 
 // GetByID godoc
-// @Summary      タスク取得（1件）
-// @Description  ユーザのタスクを1件取得する
-// @Tags         task
-// @Produce      json
-// @Param        id   path  string  true  "タスクID"
-// @Success      200      {object}  model.Task
-// @Failure      401      "Unauthorized"
-// @Failure      403      {object}  model.Error
-// @Failure      404      {object}  model.Error
-// @Failure      500      {object}  model.Error
-// @Security     TokenAuth
-// @Router       /v1/tasks/{id} [get]
+// @Summary     タスク取得（1件）
+// @Description ユーザのタスクを1件取得する
+// @Tags        task
+// @Produce     json
+// @Param       id  path     string true "タスクID"
+// @Success     200 {object} model.Task
+// @Failure     401 "Unauthorized"
+// @Failure     403 {object} model.Error
+// @Failure     404 {object} model.Error
+// @Failure     500 {object} model.Error
+// @Security    TokenAuth
+// @Router      /v1/tasks/{id} [get]
 func (controller *TaskController) GetByID(c *gin.Context) {
 	token := c.MustGet(ginauth.FirebaseAuthTokenKey).(*auth.Token)
 
@@ -84,17 +84,17 @@ func (controller *TaskController) GetByID(c *gin.Context) {
 }
 
 // Post godoc
-// @Summary      タスク追加
-// @Description  ユーザのタスクを追加する
-// @Tags         task
-// @Accept       json
-// @Produce      json
-// @Param        payload  body      model.Task  true  "登録タスク内容（id / user_idの値は自動セット）"
-// @Success      201      {object}  model.Task
-// @Failure      401      "Unauthorized"
-// @Failure      500      {object}  model.Error
-// @Security     TokenAuth
-// @Router       /v1/tasks [post]
+// @Summary     タスク追加
+// @Description ユーザのタスクを追加する
+// @Tags        task
+// @Accept      json
+// @Produce     json
+// @Param       payload body     model.Task true "登録タスク内容（id / user_idの値は自動セット）"
+// @Success     201     {object} model.Task
+// @Failure     401     "Unauthorized"
+// @Failure     500     {object} model.Error
+// @Security    TokenAuth
+// @Router      /v1/tasks [post]
 func (controller *TaskController) Post(c *gin.Context) {
 	token := c.MustGet(ginauth.FirebaseAuthTokenKey).(*auth.Token)
 
@@ -116,20 +116,20 @@ func (controller *TaskController) Post(c *gin.Context) {
 }
 
 // Put godoc
-// @Summary      タスク更新
-// @Description  ユーザのタスクを更新する
-// @Tags         task
-// @Accept       json
-// @Produce      json
-// @Param        id       path      string      true  "タスクID"
-// @Param        payload  body      model.Task  true  "登録タスク内容（id / user_idの値は自動セット）"
-// @Success      200  {object}  model.Task
-// @Failure      401  "Unauthorized"
-// @Failure      403  {object}  model.Error
-// @Failure      404  {object}  model.Error
-// @Failure      500  {object}  model.Error
-// @Security     TokenAuth
-// @Router       /v1/tasks/{id} [put]
+// @Summary     タスク更新
+// @Description ユーザのタスクを更新する
+// @Tags        task
+// @Accept      json
+// @Produce     json
+// @Param       id      path     string     true "タスクID"
+// @Param       payload body     model.Task true "登録タスク内容（id / user_idの値は自動セット）"
+// @Success     200     {object} model.Task
+// @Failure     401     "Unauthorized"
+// @Failure     403     {object} model.Error
+// @Failure     404     {object} model.Error
+// @Failure     500     {object} model.Error
+// @Security    TokenAuth
+// @Router      /v1/tasks/{id} [put]
 func (controller *TaskController) Put(c *gin.Context) {
 	token, _ := c.MustGet(ginauth.FirebaseAuthTokenKey).(*auth.Token)
 
@@ -153,17 +153,17 @@ func (controller *TaskController) Put(c *gin.Context) {
 }
 
 // Delete godoc
-// @Summary      タスク削除
-// @Description  ユーザのタスクを削除する
-// @Tags         task
-// @Param        id   path      string  true  "タスクID"
-// @Success      204  "No Content"
-// @Failure      401  "Unauthorized"
-// @Failure      403  {object}  model.Error
-// @Failure      404  {object}  model.Error
-// @Failure      500  {object}  model.Error
-// @Security     TokenAuth
-// @Router       /v1/tasks/{id} [delete]
+// @Summary     タスク削除
+// @Description ユーザのタスクを削除する
+// @Tags        task
+// @Param       id  path string true "タスクID"
+// @Success     204 "No Content"
+// @Failure     401 "Unauthorized"
+// @Failure     403 {object} model.Error
+// @Failure     404 {object} model.Error
+// @Failure     500 {object} model.Error
+// @Security    TokenAuth
+// @Router      /v1/tasks/{id} [delete]
 func (controller *TaskController) Delete(c *gin.Context) {
 	token := c.MustGet(ginauth.FirebaseAuthTokenKey).(*auth.Token)
 

@@ -11,12 +11,12 @@ import (
 	"github.com/kzuabe/todolist-go-api/app/usecase"
 )
 
-// @title                       TodoList API
-// @version                     1.0
-// @description                 TODOリストアプリのRESTfulAPI（Go実装）
-// @securitydefinitions.apikey  TokenAuth
-// @in                          header
-// @name                        Authorization
+// @title                      TodoList API
+// @version                    1.0
+// @description                TODOリストアプリのRESTfulAPI（Go実装）
+// @securitydefinitions.apikey TokenAuth
+// @in                         header
+// @name                       Authorization
 func main() {
 	gin.SetMode(config.GinMode)
 
