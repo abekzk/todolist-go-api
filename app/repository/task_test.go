@@ -2,6 +2,7 @@ package repository
 
 import (
 	"testing"
+	"time"
 
 	"github.com/kzuabe/todolist-go-api/app/model"
 	"github.com/stretchr/testify/assert"
@@ -17,6 +18,9 @@ func newTestTasks() []Task {
 			Title:       "テストタスク1",
 			Description: "テストタスク説明1",
 			Status:      0,
+			Model: gorm.Model{
+				CreatedAt: time.Unix(1648771200, 0),
+			},
 		},
 		{
 			UUID:        "task_id2",
@@ -24,6 +28,9 @@ func newTestTasks() []Task {
 			Title:       "テストタスク2",
 			Description: "テストタスク説明2",
 			Status:      1,
+			Model: gorm.Model{
+				CreatedAt: time.Unix(1648771201, 0),
+			},
 		},
 	}
 	return tasks
@@ -102,6 +109,50 @@ func TestTaskRepository_Fetch(t *testing.T) {
 					Title:       "テストタスク2",
 					Description: "テストタスク説明2",
 					Status:      1,
+				},
+			},
+		},
+		{
+			name: "Sortの指定が created_at の場合に作成日の昇順でタスクを返す",
+			args: args{
+				params: model.TaskFetchParam{Sort: newPoint("created_at")},
+			},
+			want: []model.Task{
+				{
+					ID:          "task_id1",
+					UserID:      "user_id1",
+					Title:       "テストタスク1",
+					Description: "テストタスク説明1",
+					Status:      0,
+				},
+				{
+					ID:          "task_id2",
+					UserID:      "user_id2",
+					Title:       "テストタスク2",
+					Description: "テストタスク説明2",
+					Status:      1,
+				},
+			},
+		},
+		{
+			name: "Sortの指定が -created_at の場合に作成日の降順でタスクを返す",
+			args: args{
+				params: model.TaskFetchParam{Sort: newPoint("-created_at")},
+			},
+			want: []model.Task{
+				{
+					ID:          "task_id2",
+					UserID:      "user_id2",
+					Title:       "テストタスク2",
+					Description: "テストタスク説明2",
+					Status:      1,
+				},
+				{
+					ID:          "task_id1",
+					UserID:      "user_id1",
+					Title:       "テストタスク1",
+					Description: "テストタスク説明1",
+					Status:      0,
 				},
 			},
 		},

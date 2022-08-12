@@ -27,6 +27,12 @@ func (repository *TaskRepository) Fetch(params model.TaskFetchParam) ([]model.Ta
 		tx = tx.Where("status = ?", status)
 	}
 
+	for _, sort := range params.GetSort() {
+		if order := getTaskOrder(sort); order != "" {
+			tx = tx.Order(order)
+		}
+	}
+
 	dbTasks := []Task{}
 	result := tx.Find(&dbTasks)
 
@@ -150,4 +156,15 @@ func wrapError(err error) error {
 	}
 	wrapped = &model.Error{StatusCode: http.StatusInternalServerError, Message: err.Error()}
 	return wrapped
+}
+
+func getTaskOrder(sort string) string {
+	o := ""
+	switch sort {
+	case "created_at":
+		o = "created_at"
+	case "-created_at":
+		o = "created_at desc"
+	}
+	return o
 }
