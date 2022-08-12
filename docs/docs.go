@@ -33,6 +33,12 @@ const docTemplate = `{
                 "summary": "タスク取得",
                 "parameters": [
                     {
+                        "type": "string",
+                        "description": "ソート順",
+                        "name": "sort",
+                        "in": "query"
+                    },
+                    {
                         "enum": [
                             0,
                             1

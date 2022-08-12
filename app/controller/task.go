@@ -30,7 +30,8 @@ func NewTaskController(useCase TaskUseCaseInterface) *TaskController {
 // @Description ユーザのタスクを複数件取得する
 // @Tags        task
 // @Produce     json
-// @Param       status query    int false "タスクステータス 0: 未着手 1: 完了" Enums(0, 1)
+// @Param       sort   query    string false "ソート順"
+// @Param       status query    int    false "タスクステータス 0: 未着手 1: 完了" Enums(0, 1)
 // @Success     200    {object} []model.Task
 // @Failure     401    "Unauthorized"
 // @Failure     500    {object} model.Error
