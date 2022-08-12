@@ -38,6 +38,10 @@ paths:
     get:
       description: ユーザのタスクを複数件取得する
       parameters:
+      - description: ソート順
+        in: query
+        name: sort
+        type: string
       - description: 'タスクステータス 0: 未着手 1: 完了'
         enum:
         - 0
