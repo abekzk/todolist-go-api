@@ -10,7 +10,7 @@ require (
 	github.com/kzuabe/ginauth v1.0.1
 	github.com/stretchr/testify v1.8.0
 	github.com/swaggo/gin-swagger v1.4.3
-	github.com/swaggo/swag v1.8.4
+	github.com/swaggo/swag v1.8.5
 	gorm.io/driver/mysql v1.3.5
 	gorm.io/driver/sqlite v1.3.6
 	gorm.io/gorm v1.23.8
